@@ -1,0 +1,73 @@
+[
+  {
+    "id": "1782069535759",
+    "firstName": "Данил",
+    "lastName": "оро",
+    "phoneNumber": "+7 (777) 777-77-77",
+    "slots": [
+      "Пн - 12:00"
+    ],
+    "courseLevel": "Intermediate",
+    "format": "Индивидуально",
+    "language": "Русский",
+    "selectedLectures": [],
+    "timestamp": "2026-06-21T19:18:55Z"
+  },
+  {
+    "id": "1782070900482",
+    "firstName": "Лслала",
+    "lastName": "Влаллв",
+    "phoneNumber": "646494668",
+    "slots": [
+      "Ср - 10:00"
+    ],
+    "courseLevel": "Beginner",
+    "format": "Индивидуально",
+    "language": "Русский",
+    "selectedLectures": [],
+    "timestamp": "2026-06-21T19:41:40Z"
+  },
+  {
+    "id": "1782071639547",
+    "firstName": "аида",
+    "lastName": "алмаз",
+    "phoneNumber": "87763550909",
+    "slots": [
+      "Пн - 10:00",
+      "Вт - 10:00",
+      "Ср - 10:00",
+      "Чт - 10:00",
+      "Пт - 10:00",
+      "Вс - 10:00",
+      "Сб - 10:00"
+    ],
+    "courseLevel": "Pro",
+    "format": "Индивидуально",
+    "language": "Русский",
+    "selectedLectures": [
+      "Ребатл (опровержение)",
+      "Моральная философия",
+      "Базовая политика",
+      "Продвинутое доказательство",
+      "Базовая экономика",
+      "Религия",
+      "Искусственный интеллект",
+      "Политика в дебатах для продвинутых"
+    ],
+    "timestamp": "2026-06-21T19:53:59Z"
+  },
+  {
+    "id": "1783758066999",
+    "firstName": "Test",
+    "lastName": "Testovich",
+    "phoneNumber": "7999888776679998887766",
+    "slots": [
+      "Ср - 12:00"
+    ],
+    "courseLevel": "Beginner",
+    "format": "Индивидуально",
+    "language": "Русский",
+    "selectedLectures": [],
+    "timestamp": "2026-07-11T08:21:06Z"
+  }
+]

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора | TheArgument</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F6FC;
+            --primary-color: #6E3CBC;
+            --primary-hover: #542A98;
+            --accent-color: #8F5CFF;
+            --text-main: #1F1135;
+            --text-muted: #64557A;
+            --border-color: rgba(110, 60, 188, 0.15);
+            --card-shadow: 0 10px 30px rgba(110, 60, 188, 0.05);
+            --color-green: #4CAF50;
+            --color-red: #E53E3E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 38px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(110, 60, 188, 0.05);
+        }
+
+        .btn-danger {
+            background-color: var(--color-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.9;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filters-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        select {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            outline: none;
+            font-family: inherit;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: var(--primary-color);
+        }
+
+        /* Table Styling */
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: rgba(110, 60, 188, 0.05);
+            padding: 16px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(110, 60, 188, 0.08);
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background-color: rgba(110, 60, 188, 0.02);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .status-bought {
+            background-color: rgba(76, 175, 80, 0.12);
+            color: var(--color-green);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+        }
+
+        .status-unbought {
+            background-color: rgba(229, 62, 62, 0.12);
+            color: var(--color-red);
+            border: 1px solid rgba(229, 62, 62, 0.25);
+        }
+
+        .slot-tag {
+            display: inline-block;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 100px;
+            margin: 2px;
+            font-weight: 600;
+        }
+
+        .lectures-list {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding-left: 14px;
+        }
+
+        .actions-cell {
+            display: flex;
+            gap: 6px;
+        }
+
+        .action-btn {
+            padding: 6px 10px;
+            font-size: 0.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.1s ease;
+        }
+
+        .action-btn-green {
+            background-color: var(--color-green);
+            color: white;
+        }
+
+        .action-btn-red {
+            background-color: var(--color-red);
+            color: white;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+
+        .empty-row-msg {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px;
+            font-style: italic;
+        }
+
+        .stats-summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .summary-card h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .summary-card p {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-box">
+                <img src="logo.png" alt="TheArgument" class="logo-img">
+                <div class="logo-text">The<span>Argument</span> | Админка</div>
+            </div>
+            <div>
+                <a href="index.html" class="btn btn-outline">← На главную</a>
+            </div>
+        </header>
+
+        <!-- Brief stats -->
+        <div class="stats-summary-cards">
+            <div class="summary-card">
+                <h4>Всего заявок</h4>
+                <p id="totalRegistrations">0</p>
+            </div>
+            <div class="summary-card">
+                <h4>Куплено курсов</h4>
+                <p id="boughtCourses">0</p>
+            </div>
+            <div class="summary-card">
+                <h4>Языки: ENG / RUS</h4>
+                <p id="langStats">0 / 0</p>
+            </div>
+            <div class="summary-card">
+                <h4>Формат: Инд. / Груп.</h4>
+                <p id="formatStats">0 / 0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Список заявок от учеников</h2>
+                    <div class="filters-group">
+                        <select id="filterLevel">
+                            <option value="All">Все уровни</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Pro">Pro</option>
+                        </select>
+                        <select id="filterFormat">
+                            <option value="All">Все форматы</option>
+                            <option value="Индивидуально">Индивидуально</option>
+                            <option value="Группа">Групповые</option>
+                        </select>
+                        <button class="btn btn-outline" id="refreshBtn">🔄 Обновить</button>
+                        <button class="btn btn-danger" id="clearBtn">⚠️ Очистить всё</button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table id="regTable">
+                        <thead>
+                            <tr>
+                                <th>Имя и Фамилия</th>
+                                <th>Телефон</th>
+                                <th>Уровень</th>
+                                <th>Формат</th>
+                                <th>Язык</th>
+                                <th>Индивидуальный выбор Pro</th>
+                                <th>Удобное время</th>
+                                <th>Статус обучения</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Populated by JavaScript -->
+                            <tr>
+                                <td colspan="9" class="empty-row-msg">Загрузка данных...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // НАСТРОЙКА: Укажите здесь URL вашего развернутого Google Apps Script Web App (например, https://script.google.com/macros/s/.../exec)
+        // Если оставить пустую строку "", сайт будет работать с локальным сервером node server.js или python server.py
+        const API_BASE_URL = "";
+
+        // Пароль администратора для работы с Google Sheets
+        let adminPassword = "";
+
+        function getAdminPassword() {
+            if (!API_BASE_URL) return ""; // В локальном режиме пароль не нужен
+            
+            if (!adminPassword) {
+                adminPassword = prompt("Введите пароль администратора для доступа к данным:", "");
+                if (!adminPassword) {
+                    alert("Доступ запрещен: пароль не может быть пустым.");
+                }
+            }
+            return adminPassword;
+        }
+
+        // Универсальный загрузчик API, работающий как с локальным сервером, так и с Google Sheets
+        function apiFetch(endpoint, options = {}) {
+            if (!API_BASE_URL) {
+                // Локальный режим
+                return fetch(endpoint, options);
+            }
+
+            // Проверяем пароль
+            const password = getAdminPassword();
+            if (!password) {
+                return Promise.reject("Отсутствует пароль администратора");
+            }
+
+            // Режим Google Sheets (обход CORS-запросов)
+            const url = new URL(API_BASE_URL);
+            
+            if (options.method === 'POST') {
+                let action = '';
+                if (endpoint.includes('/api/register')) action = 'register';
+                else if (endpoint.includes('/api/user-status')) action = 'update-user-status';
+                else if (endpoint.includes('/api/registrations/clear')) action = 'clear-registrations';
+                
+                let bodyData = {};
+                try {
+                    bodyData = options.body ? JSON.parse(options.body) : {};
+                } catch (e) {
+                    console.error('Ошибка парсинга тела запроса:', e);
+                }
+                bodyData.action = action;
+                bodyData.password = password; // Передаем пароль админа
+                
+                return fetch(API_BASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+            } else {
+                // GET-запросы
+                let action = '';
+                if (endpoint.includes('/api/registrations')) {
+                    action = 'registrations';
+                    url.searchParams.set('action', action);
+                    url.searchParams.set('password', password); // Передаем пароль админа
+                } else if (endpoint.includes('/api/user-status')) {
+                    action = 'user-status';
+                    url.searchParams.set('action', action);
+                    
+                    // Извлекаем phone из query params исходного URL
+                    const queryPart = endpoint.split('?')[1];
+                    if (queryPart) {
+                        const params = new URLSearchParams(queryPart);
+                        const phone = params.get('phone');
+                        if (phone) {
+                            url.searchParams.set('phone', phone);
+                        }
+                    }
+                }
+                
+                return fetch(url.toString());
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('tableBody');
+            const refreshBtn = document.getElementById('refreshBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            
+            const filterLevel = document.getElementById('filterLevel');
+            const filterFormat = document.getElementById('filterFormat');
+
+            const totalRegistrations = document.getElementById('totalRegistrations');
+            const boughtCourses = document.getElementById('boughtCourses');
+            const langStats = document.getElementById('langStats');
+            const formatStats = document.getElementById('formatStats');
+
+            let allRegistrations = [];
+
+            function fetchRegistrations() {
+                apiFetch('/api/registrations')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data && data.error) {
+                            alert("Ошибка: " + data.error);
+                            if (data.error.includes("пароль")) {
+                                adminPassword = ""; // сбрасываем неверный пароль
+                            }
+                            tableBody.innerHTML = `<tr><td colspan="9" class="empty-row-msg" style="color:var(--color-red)">${data.error}</td></tr>`;
+                            return;
+                        }
+                        allRegistrations = data || [];
+                        renderTable();
+                    })
+                    .catch(err => {
+                        console.error('Ошибка получения заявок:', err);
+                        tableBody.innerHTML = `<tr><td colspan="9" class="empty-row-msg" style="color:var(--color-red)">Не удалось загрузить данные. Пожалуйста, убедитесь, что Express-сервер запущен!</td></tr>`;
+                    });
+            }
+
+            function updateSummaryCards(filteredData) {
+                totalRegistrations.textContent = filteredData.length;
+                
+                // Count bought
+                let boughtCount = 0;
+                let engCount = 0;
+                let rusCount = 0;
+                let indCount = 0;
+                let grpCount = 0;
+                
+                const promises = filteredData.map(reg => {
+                    return apiFetch(`/api/user-status?phone=${encodeURIComponent(reg.phoneNumber)}`)
+                        .then(res => res.json())
+                        .then(userData => {
+                            if (userData && userData.error) {
+                                reg.status = 'Ошибка авторизации';
+                                return;
+                            }
+                            reg.status = userData.status || 'Не куплен';
+                            if (reg.status === 'Куплен') boughtCount++;
+                            
+                            if (reg.language === 'Английский') engCount++;
+                            else if (reg.language === 'Русский') rusCount++;
+                            
+                            if (reg.format === 'Индивидуально' || reg.format === 'Индивидуальные') indCount++;
+                            else if (reg.format === 'Группа' || reg.format === 'Групповые') grpCount++;
+                        })
+                        .catch(() => {
+                            reg.status = 'Не куплен';
+                        });
+                });
+
+                Promise.all(promises).then(() => {
+                    boughtCourses.textContent = boughtCount;
+                    langStats.textContent = `${engCount} / ${rusCount}`;
+                    formatStats.textContent = `${indCount} / ${grpCount}`;
+                    
+                    // Render rows after syncing status
+                    renderRows(filteredData);
+                });
+            }
+
+            function renderTable() {
+                const level = filterLevel.value;
+                const format = filterFormat.value;
+
+                const filtered = allRegistrations.filter(reg => {
+                    const matchesLevel = (level === 'All' || reg.courseLevel === level);
+                    const matchesFormat = (format === 'All' || reg.format === format);
+                    return matchesLevel && matchesFormat;
+                });
+
+                updateSummaryCards(filtered);
+            }
+
+            function renderRows(data) {
+                tableBody.innerHTML = '';
+                
+                if (data.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="9" class="empty-row-msg">Заявки не найдены</td></tr>`;
+                    return;
+                }
+
+                data.forEach(reg => {
+                    const tr = document.createElement('tr');
+                    
+                    // Slots tag html
+                    const slotsHtml = (reg.slots || []).map(slot => `<span class="slot-tag">${slot}</span>`).join(' ');
+                    
+                    // Custom pro lectures
+                    let lecturesHtml = '-';
+                    if (reg.courseLevel === 'Pro' && reg.selectedLectures && reg.selectedLectures.length > 0) {
+                        lecturesHtml = `<ol class="lectures-list">` + 
+                            reg.selectedLectures.map(topic => `<li>${topic}</li>`).join('') + 
+                            `</ol>`;
+                    }
+
+                    // Status Class
+                    const statusClass = reg.status === 'Куплен' ? 'status-bought' : 'status-unbought';
+                    
+                    // Build Actions
+                    const actionButton = reg.status === 'Куплен' ? 
+                        `<button class="action-btn action-btn-red" onclick="toggleStatus('${reg.phoneNumber}', 'Не куплен', '${reg.firstName}', '${reg.lastName}')">Отменить покупку</button>` :
+                        `<button class="action-btn action-btn-green" onclick="toggleStatus('${reg.phoneNumber}', 'Куплен', '${reg.firstName}', '${reg.lastName}')">Активировать курс</button>`;
+
+                    tr.innerHTML = `
+                        <td><strong>${reg.firstName} ${reg.lastName}</strong></td>
+                        <td>${reg.phoneNumber}</td>
+                        <td><span class="slot-tag" style="background-color:var(--primary-light)">${reg.courseLevel}</span></td>
+                        <td>${reg.format}</td>
+                        <td>${reg.language}</td>
+                        <td>${lecturesHtml}</td>
+                        <td>${slotsHtml}</td>
+                        <td><span class="status-badge ${statusClass}">${reg.status}</span></td>
+                        <td class="actions-cell">${actionButton}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            }
+
+            // Global trigger function to change user status
+            window.toggleStatus = function(phone, newStatus, firstName, lastName) {
+                apiFetch('/api/user-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        phoneNumber: phone,
+                        status: newStatus,
+                        firstName,
+                        lastName
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.error) {
+                        alert("Не удалось обновить статус: " + data.error);
+                        if (data.error.includes("пароль")) {
+                            adminPassword = "";
+                        }
+                        return;
+                    }
+                    fetchRegistrations(); // Reload
+                })
+                .catch(err => {
+                    console.error('Ошибка обновления статуса:', err);
+                });
+            };
+
+            refreshBtn.addEventListener('click', fetchRegistrations);
+            
+            filterLevel.addEventListener('change', renderTable);
+            filterFormat.addEventListener('change', renderTable);
+
+            clearBtn.addEventListener('click', () => {
+                if (confirm('Вы уверены, что хотите удалить ВСЕ заявки с сервера? Это действие нельзя отменить.')) {
+                    apiFetch('/api/registrations/clear', { method: 'POST' })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data && data.error) {
+                                alert("Не удалось очистить заявки: " + data.error);
+                                if (data.error.includes("пароль")) {
+                                    adminPassword = "";
+                                }
+                                return;
+                            }
+                            fetchRegistrations();
+                        })
+                        .catch(err => {
+                            console.error('Ошибка очистки заявок:', err);
+                        });
+                }
+            });
+
+            // Initial Load
+            fetchRegistrations();
+        });
+    </script>
+</body>
+</html>

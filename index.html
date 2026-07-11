@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Школа дебатов TheArgument. Первая онлайн-школа по дебатам в Казахстане. Индивидуальные и групповые занятия на русском и английском для сборной Казахстана.">
+    <title>TheArgument | Первая онлайн-школа по дебатам в Казахстане</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Green Notification Bar (Hidden by default, animation triggers on download) -->
+    <div class="bonus-notification" id="bonusNotification">
+        <div class="bonus-content">
+            <span class="bonus-icon">🎁</span>
+            <div class="bonus-text">
+                <span class="bonus-title">Вы получили 1 из 10 бонусов!</span>
+                <div class="bonus-progress-bar-wrapper">
+                    <div class="bonus-progress-line" style="width: 10%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background grid decoration -->
+    <div class="grid-overlay"></div>
+    <div class="blur-glow glow-1"></div>
+    <div class="blur-glow glow-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="TheArgument Logo" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="#about" class="nav-link">Кто мы</a>
+                <a href="#promo" class="nav-link">Акции</a>
+                <a href="https://www.instagram.com/dc.argument/" target="_blank" rel="noopener noreferrer" class="nav-link">Наш клуб</a>
+                <a href="#formats" class="nav-link">Формат обучения</a>
+                <a href="#register" class="nav-link">Запись</a>
+                <!-- User Profile Nav item -->
+                <button class="nav-profile-btn" id="navProfileBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span>Профиль</span>
+                    <span class="profile-dot" id="profileDot"></span>
+                </button>
+            </nav>
+            <button class="mobile-nav-toggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="about" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>The Argument – первая онлайн школа по дебатам в Казахстане</h1>
+                    <p class="hero-desc">Мы помогаем нашим студентам в получении качественного образования через дебаты, готовим к участию в сборной Казахстана.</p>
+                    <div class="hero-actions">
+                        <a href="#register" class="btn btn-primary">Подобрать расписание</a>
+                        <a href="https://www.instagram.com/dc.argument/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Наш клуб и результаты</a>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card card-hover">
+                        <div class="stat-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stat-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="stat-number">700+</h3>
+                            <p class="stat-label">Успешных выпускников</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card card-hover">
+                        <div class="stat-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stat-icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4 4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="stat-number">50+</h3>
+                            <p class="stat-label">Выигранных кубков</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card card-hover">
+                        <div class="stat-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stat-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 class="stat-number">5+ лет</h3>
+                            <p class="stat-label">Опыта в образовании</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotions Section -->
+        <section id="promo" class="promo-section">
+            <div class="container">
+                <div class="promo-banner">
+                    <div class="promo-content">
+                        <span class="promo-tag">Горячая Акция</span>
+                        <h2>Получите бесплатный чек-лист!</h2>
+                        <p>Авторизируйся на нашей платформе по дебатам <span class="promo-highlight-link" id="promoLinkHere">тут</span> и получи бесплатный лист по самостоятельной подготовке к турнирам.</p>
+                    </div>
+                    <div class="promo-image-wrapper">
+                        <img src="cat.png" alt="Кот-помощник" class="promo-cat-avatar">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formats / Course levels Section -->
+        <section id="formats" class="formats-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="badge">Программы и Тарифы</div>
+                    <h2>Формат обучения</h2>
+                    <p class="section-subtitle">Выберите подходящую образовательную траекторию в зависимости от вашего уровня</p>
+                </div>
+
+                <div class="formats-grid">
+                    <!-- BEGINNER CARD -->
+                    <div class="format-card card-hover" data-level="Beginner">
+                        <div class="format-header">
+                            <div class="format-level">Beginner</div>
+                            <p class="format-short-desc">Для тех, кто еще ничего не понимает в дебатах, но очень хочет научиться круто говорить и мыслить.</p>
+                        </div>
+
+                        <!-- Interactive Radio Controls -->
+                        <div class="format-selectors">
+                            <div class="selector-group">
+                                <span class="selector-label">Формат:</span>
+                                <div class="selector-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="format-beginner" value="Индивидуально" checked>
+                                        <span>Инд.</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="format-beginner" value="Группа">
+                                        <span>Груп.</span>
+                                    </label>
+                                    <span class="info-icon" data-info="individual">i</span>
+                                </div>
+                            </div>
+                            
+                            <div class="selector-group">
+                                <span class="selector-label">Язык:</span>
+                                <div class="selector-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="lang-beginner" value="Русский" checked>
+                                        <span>Рус.</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="lang-beginner" value="Английский">
+                                        <span>Анг.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- General conditions list -->
+                        <div class="format-specs">
+                            <div class="spec-item">📅 Занятия 2 раза в неделю</div>
+                            <div class="spec-item">⏱️ Время занятий: 1 - 1.5 часа</div>
+                            <div class="spec-item">🕒 Расписание на ваш выбор</div>
+                            <div class="spec-item-long">💡 Теоретическая лекция, затем практика раундов, которые судят квалифицированные судьи из The Argument.</div>
+                        </div>
+
+                        <!-- What's included (8 topics) -->
+                        <div class="course-curriculum">
+                            <h4>Что входит в курс:</h4>
+                            <ol class="topics-list">
+                                <li>Введение в дебаты</li>
+                                <li>Аргументация</li>
+                                <li>Ребатл (опровержение)</li>
+                                <li>Расширение (экстеншн)</li>
+                                <li>Речь анализа</li>
+                                <li>Моральная философия</li>
+                                <li>Базовая политика</li>
+                                <li>Социальные движения</li>
+                            </ol>
+                        </div>
+
+                        <!-- Bonuses -->
+                        <div class="course-bonuses">
+                            <h4>Бонусы при регистрации:</h4>
+                            <ul class="bonuses-list">
+                                <li>Бесплатные гайды, статьи и подкасты спикеров</li>
+                                <li>Консультация по поступлению в зарубежные вузы</li>
+                            </ul>
+                        </div>
+
+                        <a href="#register" class="btn btn-primary format-btn select-course-btn" data-level="Beginner">Выбрать Beginner</a>
+                    </div>
+
+                    <!-- INTERMEDIATE CARD -->
+                    <div class="format-card card-hover" data-level="Intermediate">
+                        <div class="format-header">
+                            <div class="format-level">Intermediate</div>
+                            <p class="format-short-desc">Для тех, кто уже имеет базовый опыт в дебатах и хочет выйти на турнирный уровень побед.</p>
+                        </div>
+
+                        <!-- Interactive Radio Controls -->
+                        <div class="format-selectors">
+                            <div class="selector-group">
+                                <span class="selector-label">Формат:</span>
+                                <div class="selector-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="format-intermediate" value="Индивидуально" checked>
+                                        <span>Инд.</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="format-intermediate" value="Группа">
+                                        <span>Груп.</span>
+                                    </label>
+                                    <span class="info-icon" data-info="individual">i</span>
+                                </div>
+                            </div>
+                            
+                            <div class="selector-group">
+                                <span class="selector-label">Язык:</span>
+                                <div class="selector-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="lang-intermediate" value="Русский" checked>
+                                        <span>Рус.</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="lang-intermediate" value="Английский">
+                                        <span>Анг.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- General conditions list -->
+                        <div class="format-specs">
+                            <div class="spec-item">📅 Занятия 2 раза в неделю</div>
+                            <div class="spec-item">⏱️ Время занятий: 1 - 1.5 часа</div>
+                            <div class="spec-item">🕒 Расписание на ваш выбор</div>
+                            <div class="spec-item-long">💡 Теоретическая лекция, затем практика раундов, которые судят квалифицированные судьи из The Argument.</div>
+                        </div>
+
+                        <!-- What's included (8 topics) -->
+                        <div class="course-curriculum">
+                            <h4>Что входит в курс:</h4>
+                            <ol class="topics-list">
+                                <li>Продвинутое доказательство</li>
+                                <li>Психология в дебатах</li>
+                                <li>Базовая экономика</li>
+                                <li>Религия</li>
+                                <li>Искусственный интеллект</li>
+                                <li>Искусство</li>
+                                <li>Политика в дебатах для продвинутых</li>
+                                <li>Масс-медиа</li>
+                            </ol>
+                        </div>
+
+                        <!-- Bonuses -->
+                        <div class="course-bonuses">
+                            <h4>Бонусы при регистрации:</h4>
+                            <ul class="bonuses-list">
+                                <li>Бесплатные гайды, статьи и подкасты спикеров</li>
+                                <li>Консультация по поступлению в зарубежные вузы</li>
+                            </ul>
+                        </div>
+
+                        <a href="#register" class="btn btn-primary format-btn select-course-btn" data-level="Intermediate">Выбрать Intermediate</a>
+                    </div>
+
+                    <!-- PRO CARD (Builder) -->
+                    <div class="format-card card-hover pro-card" data-level="Pro">
+                        <div class="format-header">
+                            <div class="format-level">Pro (Конструктор)</div>
+                            <p class="format-short-desc">Для профессиональных дебатеров. Соберите свою уникальную программу обучения самостоятельно!</p>
+                        </div>
+
+                        <!-- Interactive Radio Controls -->
+                        <div class="format-selectors">
+                            <div class="selector-group">
+                                <span class="selector-label">Формат:</span>
+                                <div class="selector-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="format-pro" value="Индивидуально" checked>
+                                        <span>Инд.</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="format-pro" value="Группа">
+                                        <span>Груп.</span>
+                                    </label>
+                                    <span class="info-icon" data-info="individual">i</span>
+                                </div>
+                            </div>
+                            
+                            <div class="selector-group">
+                                <span class="selector-label">Язык:</span>
+                                <div class="selector-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="lang-pro" value="Русский" checked>
+                                        <span>Рус.</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="lang-pro" value="Английский">
+                                        <span>Анг.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- General conditions list -->
+                        <div class="format-specs">
+                            <div class="spec-item">📅 Занятия 2 раза в неделю</div>
+                            <div class="spec-item">⏱️ Время занятий: 1 - 1.5 часа</div>
+                            <div class="spec-item">🕒 Расписание на ваш выбор</div>
+                            <div class="spec-item-long">💡 Индивидуальные темы и практика с судьями из The Argument.</div>
+                        </div>
+
+                        <!-- What's included (Builder Output) -->
+                        <div class="course-curriculum pro-curriculum-container">
+                            <h4>Выбранные лекции (выберите 8 тем):</h4>
+                            <button class="btn btn-outline btn-block" id="proBuilderOpenBtn">🔧 Собрать курс</button>
+                            <ol class="topics-list pro-selected-list" id="proSelectedTopicsList">
+                                <li class="empty-list-msg">Темы не выбраны. Нажмите "Собрать курс" выше.</li>
+                            </ol>
+                        </div>
+
+                        <!-- Bonuses -->
+                        <div class="course-bonuses">
+                            <h4>Бонусы при регистрации:</h4>
+                            <ul class="bonuses-list">
+                                <li>Бесплатные гайды, статьи и подкасты спикеров</li>
+                                <li>Консультация по поступлению в зарубежные вузы</li>
+                                <li>Дополнительные часы занятий по вашему выбору</li>
+                                <li>Возможность сыграть турнир с вашим тренером</li>
+                            </ul>
+                        </div>
+
+                        <a href="#register" class="btn btn-primary format-btn select-course-btn" data-level="Pro" id="selectProCourseBtn">Выбрать Pro</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration & Schedule Form Section -->
+        <section id="register" class="register-section">
+            <div class="container register-container">
+                <div class="register-info">
+                    <div class="badge">Бесплатная консультация</div>
+                    <h2>Запишитесь на консультацию по курсу</h2>
+                    <p>Мы поможем подобрать подходящий формат обучения, ответим на все вопросы и выберем удобное время. Консультация бесплатная!</p>
+                    
+                    <div class="selected-course-summary-box" id="selectedCourseSummaryBox" style="display: none;">
+                        <h4>Выбранный тариф:</h4>
+                        <p class="summary-line">Уровень: <strong id="sumLevel">-</strong></p>
+                        <p class="summary-line">Формат: <strong id="sumFormat">-</strong></p>
+                        <p class="summary-line">Язык: <strong id="sumLang">-</strong></p>
+                        <div id="sumProTopicsContainer" style="display: none;">
+                            <p class="summary-line">Выбранные лекции (Pro):</p>
+                            <ul id="sumProTopics"></ul>
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+                <!-- Registration Form -->
+                <div class="form-wrapper">
+                    <form id="debateForm" class="debate-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Имя</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Введите ваше имя">
+                                <span class="error-msg" id="firstNameError">Пожалуйста, введите имя</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Фамилия</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Введите вашу фамилию">
+                                <span class="error-msg" id="lastNameError">Пожалуйста, введите фамилию</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Номер телефона</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="Введите номер телефона">
+                            <span class="error-msg" id="phoneError">Пожалуйста, введите номер телефона</span>
+                        </div>
+
+                        <!-- Interactive Scheduler -->
+                        <div class="scheduler-container">
+                            <label class="scheduler-label">Выбери удобное точное время (часы) для занятий</label>
+                            <p class="scheduler-sub">Выбери один или несколько слотов (нажми для выбора)</p>
+                            
+                            <div class="scheduler-grid-wrapper">
+                                <div class="scheduler-hours-grid" id="schedulerGrid">
+                                    <!-- Days in columns, hours in rows -->
+                                    <div class="hour-header-cell">Часы</div>
+                                    <div class="day-header-cell">Пн</div>
+                                    <div class="day-header-cell">Вт</div>
+                                    <div class="day-header-cell">Ср</div>
+                                    <div class="day-header-cell">Чт</div>
+                                    <div class="day-header-cell">Пт</div>
+                                    <div class="day-header-cell font-weekend">Сб</div>
+                                    <div class="day-header-cell font-weekend">Вс</div>
+                                    
+                                    <!-- Render row by row from javascript -->
+                                </div>
+                            </div>
+                            <span class="error-msg" id="slotsError">Пожалуйста, выберите хотя бы одно удобное время</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Записаться на консультацию</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <a href="#" class="logo">
+                    <img src="logo.png" alt="TheArgument Logo" class="logo-img">
+                    <span class="logo-text">The<span>Argument</span></span>
+                </a>
+                <p class="footer-about">Первая онлайн-школа дебатов и ораторского искусства в Казахстане. Готовим чемпионов.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <a href="#about">Кто мы</a>
+                    <a href="#promo">Акции</a>
+                    <a href="https://www.instagram.com/dc.argument/" target="_blank" rel="noopener noreferrer">Результаты</a>
+                    <a href="#formats">Обучение</a>
+                </div>
+                <div class="footer-socials">
+                    <h4>Связаться с нами</h4>
+                    <a href="https://www.instagram.com/theargument.kz/?hl=ru" target="_blank" rel="noopener noreferrer" class="social-link">@theargument.kz</a>
+                    <a href="https://www.instagram.com/dc.argument/" target="_blank" rel="noopener noreferrer" class="social-link">@dc.argument</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 TheArgument. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       Modals
+       ========================================================================== -->
+
+    <!-- 1. Google Sign-In & Phone registration Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal auth-modal">
+            <button class="close-modal-x" id="closeAuthBtn">&times;</button>
+            
+            <!-- Step 1: Sign in with Google Mock -->
+            <div class="auth-step" id="authStep1">
+                <h2>Войти в личный кабинет</h2>
+                <p class="auth-sub">Авторизуйтесь, чтобы отслеживать свой статус, скачивать учебные гайды и автоматически заполнять заявки.</p>
+                
+                <button class="google-auth-btn" id="googleLoginBtn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="google-icon-svg">
+                    <span>Войти через Google</span>
+                </button>
+            </div>
+
+            <!-- Step 2: Request Name and Phone number -->
+            <div class="auth-step" id="authStep2" style="display: none;">
+                <h2>Завершение авторизации</h2>
+                <p class="auth-sub">Пожалуйста, введите ваше имя и номер телефона для завершения создания профиля.</p>
+                <form id="authDetailsForm">
+                    <div class="form-group text-left">
+                        <label for="authName">Ваше имя</label>
+                        <input type="text" id="authName" required placeholder="Введите ваше имя">
+                    </div>
+                    <div class="form-group text-left">
+                        <label for="authPhone">Номер телефона</label>
+                        <input type="tel" id="authPhone" required placeholder="Введите номер телефона">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Подтвердить и войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. User Profile Modal -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal profile-modal">
+            <button class="close-modal-x" id="closeProfileBtn">&times;</button>
+            <h2>Мой профиль</h2>
+            
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar" id="profileAvatarInitials">..</div>
+            </div>
+            
+            <div class="profile-info-list">
+                <div class="profile-info-item">
+                    <span class="info-label">Имя:</span>
+                    <strong id="profileInfoName">-</strong>
+                </div>
+                <div class="profile-info-item">
+                    <span class="info-label">Телефон:</span>
+                    <strong id="profileInfoPhone">-</strong>
+                </div>
+                <div class="profile-info-item">
+                    <span class="info-label">Статус обучения:</span>
+                    <span class="status-badge status-unbought" id="profileInfoStatus">🔒 Нет полного доступа</span>
+                </div>
+            </div>
+
+            <div class="profile-download-box">
+                <h4>Доступные материалы:</h4>
+                <p class="download-sub">Скачайте бесплатный гайд по самостоятельной подготовке к дебатным турнирам.</p>
+                <!-- Clicking this triggers direct download, handles promo guide tracker -->
+                <a href="подготовка к турниру.pdf" download="подготовка к турниру.pdf" class="btn btn-primary btn-block download-guide-btn" id="downloadGuideBtn">
+                    📥 Скачать гайд (PDF)
+                </a>
+            </div>
+            
+            <button class="btn btn-outline btn-block" id="logoutBtn">Выйти из профиля</button>
+        </div>
+    </div>
+
+    <!-- 3. Pro Course Configurator Modal -->
+    <div class="modal-overlay" id="proModal">
+        <div class="modal pro-builder-modal">
+            <button class="close-modal-x" id="closeProModalBtn">&times;</button>
+            <h2>Конструктор курса Pro</h2>
+            <p class="builder-sub">Выберите ровно 8 интересующих вас лекций из списка ниже</p>
+            
+            <div class="builder-columns">
+                <div class="builder-col">
+                    <h4>Раздел Beginner</h4>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic1" value="Введение в дебаты" class="pro-topic-checkbox">
+                        <label for="topic1">1. Введение в дебаты</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic2" value="Аргументация" class="pro-topic-checkbox">
+                        <label for="topic2">2. Аргументация</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic3" value="Ребатл (опровержение)" class="pro-topic-checkbox">
+                        <label for="topic3">3. Ребатл (опровержение)</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic4" value="Расширение (экстеншн)" class="pro-topic-checkbox">
+                        <label for="topic4">4. Расширение (экстеншн)</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic5" value="Речь анализа" class="pro-topic-checkbox">
+                        <label for="topic5">5. Речь анализа</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic6" value="Моральная философия" class="pro-topic-checkbox">
+                        <label for="topic6">6. Моральная философия</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic7" value="Базовая политика" class="pro-topic-checkbox">
+                        <label for="topic7">7. Базовая политика</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic8" value="Социальные движения" class="pro-topic-checkbox">
+                        <label for="topic8">8. Социальные движения</label>
+                    </div>
+                </div>
+                
+                <div class="builder-col">
+                    <h4>Раздел Intermediate</h4>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic9" value="Продвинутое доказательство" class="pro-topic-checkbox">
+                        <label for="topic9">9. Продвинутое доказательство</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic10" value="Психология в дебатах" class="pro-topic-checkbox">
+                        <label for="topic10">10. Психология в дебатах</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic11" value="Базовая экономика" class="pro-topic-checkbox">
+                        <label for="topic11">11. Базовая экономика</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic12" value="Религия" class="pro-topic-checkbox">
+                        <label for="topic12">12. Религия</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic13" value="Искусственный интеллект" class="pro-topic-checkbox">
+                        <label for="topic13">13. Искусственный интеллект</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic14" value="Искусство" class="pro-topic-checkbox">
+                        <label for="topic14">14. Искусство</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic15" value="Политика в дебатах для продвинутых" class="pro-topic-checkbox">
+                        <label for="topic15">15. Политика для продвинутых</label>
+                    </div>
+                    <div class="topic-check-item">
+                        <input type="checkbox" id="topic16" value="Масс-медиа" class="pro-topic-checkbox">
+                        <label for="topic16">16. Масс-медиа</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="builder-footer">
+                <span class="counter-label">Выбрано: <strong id="builderCounter">0</strong> из <strong>8</strong></span>
+                <button class="btn btn-primary" id="saveProConfigBtn" disabled>Сохранить темы</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Registration success overlay -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-success-icon">✓</div>
+            <h2>Заявка на консультацию отправлена!</h2>
+            <p>Спасибо, <span id="summaryName"></span>!</p>
+            <p class="modal-sub">Мы свяжемся с вами по номеру <span id="summaryPhone"></span> для подтверждения времени консультации.</p>
+            
+            <div class="summary-details-box">
+                <p>Выбранный тариф: <strong id="sumModalLevel">Beginner</strong></p>
+                <p>Формат: <strong id="sumModalFormat">Индивидуально</strong></p>
+                <p>Язык: <strong id="sumModalLang">Русский</strong></p>
+                <div class="summary-slots-wrapper">
+                    <p>Выбранные часы занятий:</p>
+                    <div id="summarySlots" class="summary-slots"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" id="closeModalBtn">Отлично</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       Format Informational Tooltips (Popups on hovering 'i')
+       ========================================================================== -->
+    <div class="tooltip-popup" id="formatTooltip">
+        <p id="tooltipText"></p>
+    </div>
+
+    <!-- Кот-помощник удален по запросу пользователя -->
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>
