@@ -1,6 +1,4 @@
-// НАСТРОЙКА: Укажите здесь URL вашего развернутого Google Apps Script Web App (например, https://script.google.com/macros/s/.../exec)
-// Если оставить пустую строку "", сайт будет работать с локальным сервером node server.js или python server.py
-const API_BASE_URL = "";
+const API_BASE_URL = "https://script.google.com/macros/s/AKfycbwzqnbERDrU-i5MpHM3y8gqnTBcmRwsS7ME43gv1VXnc5I9MymPwJM9eGVjddnbLGQ7/exec";
 
 // Универсальный загрузчик API, работающий как с локальным сервером, так и с Google Sheets
 function apiFetch(endpoint, options = {}) {
