@@ -313,6 +313,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // НАСТРОЙКА: Укажите здесь URL вашего развернутого Google Apps Script Web App
+            // Если оставить пустую строку "", сайт будет работать с локальным localStorage
+            var API_BASE_URL = "";
+
             var tableBody        = document.getElementById('tableBody');
             var refreshBtn       = document.getElementById('refreshBtn');
             var clearBtn         = document.getElementById('clearBtn');
@@ -324,27 +328,107 @@
             var formatEl         = document.getElementById('formatStats');
             var allRegistrations = [];
 
-            // ── Загрузка из localStorage ─────────────────────────────────────
-            function fetchRegistrations() {
-                var regs  = JSON.parse(localStorage.getItem('registrations') || '[]');
-                var users = JSON.parse(localStorage.getItem('users') || '{}');
-
-                allRegistrations = regs.map(function(reg) {
-                    var u = users[reg.phoneNumber];
-                    return Object.assign({}, reg, {
-                        status: (u && u.status) || reg.status || 'Не куплен'
-                    });
-                });
-
-                if (allRegistrations.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="9" class="empty-row-msg">Заявок пока нет. Попросите кого-нибудь заполнить форму на главной странице.</td></tr>';
-                    totalEl.textContent  = 0;
-                    boughtEl.textContent = 0;
-                    langEl.textContent   = '0 / 0';
-                    formatEl.textContent = '0 / 0';
-                    return;
+            // ── Универсальный загрузчик API для Google Sheets ────────────────
+            function apiFetch(endpoint, options) {
+                options = options || {};
+                if (!API_BASE_URL) {
+                    return Promise.reject("Локальный режим");
                 }
-                renderTable();
+                var url = new URL(API_BASE_URL);
+                if (options.method === 'POST') {
+                    var action = '';
+                    if (endpoint.includes('/api/register')) action = 'register';
+                    else if (endpoint.includes('/api/user-status')) action = 'update-user-status';
+                    else if (endpoint.includes('/api/registrations/clear')) action = 'clear-registrations';
+                    
+                    var bodyData = {};
+                    try { bodyData = options.body ? JSON.parse(options.body) : {}; } catch (e) {}
+                    bodyData.action = action;
+                    bodyData.password = "admin"; // Соответствует паролю в google_apps_script.js
+                    
+                    return fetch(API_BASE_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify(bodyData)
+                    });
+                } else {
+                    var action = '';
+                    if (endpoint.includes('/api/registrations')) {
+                        action = 'registrations';
+                        url.searchParams.set('action', action);
+                        url.searchParams.set('password', "admin"); // Соответствует паролю в google_apps_script.js
+                    } else if (endpoint.includes('/api/user-status')) {
+                        action = 'user-status';
+                        url.searchParams.set('action', action);
+                        var queryPart = endpoint.split('?')[1];
+                        if (queryPart) {
+                            var params = new URLSearchParams(queryPart);
+                            var phone = params.get('phone');
+                            if (phone) url.searchParams.set('phone', phone);
+                        }
+                    }
+                    return fetch(url.toString());
+                }
+            }
+
+            // ── Загрузка из Google Sheets / localStorage ──────────────────────
+            function fetchRegistrations() {
+                var badge = document.getElementById('dataSourceBadge');
+                
+                if (API_BASE_URL) {
+                    apiFetch('/api/registrations')
+                        .then(function(res) { return res.json(); })
+                        .then(function(data) {
+                            if (data && data.error) {
+                                throw new Error(data.error);
+                            }
+                            allRegistrations = data || [];
+                            if (badge) { 
+                                badge.className = 'data-source-badge'; 
+                                badge.style.background = 'rgba(76, 175, 80, 0.12)'; 
+                                badge.style.color = '#2e7d32'; 
+                                badge.style.border = '1px solid rgba(76, 175, 80, 0.3)';
+                                badge.textContent = '🟢 Google Таблица'; 
+                            }
+                            renderTable();
+                        })
+                        .catch(function(err) {
+                            console.warn("Ошибка получения с Google Таблиц, читаем локально:", err);
+                            loadFromLocalStorage();
+                        });
+                } else {
+                    loadFromLocalStorage();
+                }
+
+                function loadFromLocalStorage() {
+                    var regs  = JSON.parse(localStorage.getItem('registrations') || '[]');
+                    var users = JSON.parse(localStorage.getItem('users') || '{}');
+
+                    allRegistrations = regs.map(function(reg) {
+                        var u = users[reg.phoneNumber];
+                        return Object.assign({}, reg, {
+                            status: (u && u.status) || reg.status || 'Не куплен'
+                        });
+                    });
+
+                    if (badge) { 
+                        badge.className = 'data-source-badge source-local'; 
+                        badge.style.background = ''; 
+                        badge.style.color = ''; 
+                        badge.style.border = '';
+                        badge.textContent = '💾 Локально'; 
+                    }
+
+                    if (allRegistrations.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="9" class="empty-row-msg">Заявок пока нет. Попросите кого-нибудь заполнить форму на главной странице.</td></tr>';
+                        totalEl.textContent  = 0;
+                        boughtEl.textContent = 0;
+                        langEl.textContent   = '0 / 0';
+                        formatEl.textContent = '0 / 0';
+                        return;
+                    }
+                    renderTable();
+                }
             }
 
             // ── Статистика ───────────────────────────────────────────────────
@@ -432,7 +516,25 @@
                     updatedAt:  new Date().toISOString()
                 };
                 localStorage.setItem('users', JSON.stringify(users));
-                fetchRegistrations();
+
+                if (API_BASE_URL) {
+                    apiFetch('/api/user-status', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            phoneNumber: phone,
+                            status: newStatus,
+                            firstName: firstName,
+                            lastName: lastName
+                        })
+                    }).then(function() {
+                        fetchRegistrations();
+                    }).catch(function(err) {
+                        console.error("Ошибка при обновлении на Google Sheets:", err);
+                        fetchRegistrations();
+                    });
+                } else {
+                    fetchRegistrations();
+                }
             };
 
             // ── Экспорт CSV (без интернета, открывается в Excel) ─────────────
@@ -483,7 +585,17 @@
                 if (confirm('Удалить ВСЕ заявки? Действие нельзя отменить.')) {
                     localStorage.removeItem('registrations');
                     localStorage.removeItem('users');
-                    fetchRegistrations();
+
+                    if (API_BASE_URL) {
+                        apiFetch('/api/registrations/clear', { method: 'POST' })
+                            .then(function() { fetchRegistrations(); })
+                            .catch(function(err) {
+                                console.error("Ошибка при очистке в Google Sheets:", err);
+                                fetchRegistrations();
+                            });
+                    } else {
+                        fetchRegistrations();
+                    }
                 }
             });
 
