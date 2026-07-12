@@ -19,11 +19,7 @@
             --color-red: #E53E3E;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Outfit', 'Montserrat', sans-serif;
@@ -32,10 +28,7 @@
             padding: 40px 20px;
         }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1300px; margin: 0 auto; }
 
         header {
             display: flex;
@@ -46,31 +39,12 @@
             padding-bottom: 20px;
         }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .logo-box { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 38px; width: auto; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
+        .logo-text span { color: var(--primary-color); }
 
-        .logo-img {
-            height: 38px;
-            width: auto;
-        }
-
-        .logo-text {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .logo-text span {
-            color: var(--primary-color);
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+        h1 { font-size: 1.8rem; font-weight: 700; }
 
         .btn {
             padding: 10px 20px;
@@ -86,39 +60,47 @@
             gap: 8px;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
 
         .btn-outline {
             background-color: white;
             border: 1px solid var(--border-color);
             color: var(--primary-color);
         }
+        .btn-outline:hover { background-color: rgba(110, 60, 188, 0.05); }
 
-        .btn-outline:hover {
-            background-color: rgba(110, 60, 188, 0.05);
-        }
+        .btn-danger { background-color: var(--color-red); color: white; }
+        .btn-danger:hover { opacity: 0.9; }
 
-        .btn-danger {
-            background-color: var(--color-red);
+        .btn-excel {
+            background: linear-gradient(135deg, #1a6c3a, #217346);
             color: white;
+            box-shadow: 0 4px 15px rgba(33, 115, 70, 0.3);
+        }
+        .btn-excel:hover {
+            background: linear-gradient(135deg, #217346, #1a6c3a);
+            box-shadow: 0 6px 20px rgba(33, 115, 70, 0.45);
+            transform: translateY(-1px);
         }
 
-        .btn-danger:hover {
-            opacity: 0.9;
+        .data-source-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            vertical-align: middle;
+        }
+        .source-local {
+            background: rgba(255,152,0,0.12);
+            color: #e65100;
+            border: 1px solid rgba(255,152,0,0.3);
         }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
         .card {
             background-color: white;
@@ -137,11 +119,7 @@
             gap: 16px;
         }
 
-        .filters-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .filters-group { display: flex; gap: 12px; flex-wrap: wrap; }
 
         select {
             padding: 8px 16px;
@@ -152,24 +130,15 @@
             color: var(--text-muted);
             cursor: pointer;
         }
+        select:focus { border-color: var(--primary-color); }
 
-        select:focus {
-            border-color: var(--primary-color);
-        }
-
-        /* Table Styling */
         .table-wrapper {
             overflow-x: auto;
             border: 1px solid var(--border-color);
             border-radius: 12px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 0.9rem;
-        }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
 
         th {
             background-color: rgba(110, 60, 188, 0.05);
@@ -185,9 +154,7 @@
             vertical-align: middle;
         }
 
-        tr:hover {
-            background-color: rgba(110, 60, 188, 0.02);
-        }
+        tr:hover { background-color: rgba(110, 60, 188, 0.02); }
 
         .status-badge {
             display: inline-block;
@@ -196,13 +163,11 @@
             font-size: 0.75rem;
             font-weight: 700;
         }
-
         .status-bought {
             background-color: rgba(76, 175, 80, 0.12);
             color: var(--color-green);
             border: 1px solid rgba(76, 175, 80, 0.25);
         }
-
         .status-unbought {
             background-color: rgba(229, 62, 62, 0.12);
             color: var(--color-red);
@@ -220,16 +185,9 @@
             font-weight: 600;
         }
 
-        .lectures-list {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            padding-left: 14px;
-        }
+        .lectures-list { font-size: 0.75rem; color: var(--text-muted); padding-left: 14px; }
 
-        .actions-cell {
-            display: flex;
-            gap: 6px;
-        }
+        .actions-cell { display: flex; gap: 6px; }
 
         .action-btn {
             padding: 6px 10px;
@@ -240,27 +198,11 @@
             border: none;
             transition: all 0.1s ease;
         }
+        .action-btn-green { background-color: var(--color-green); color: white; }
+        .action-btn-red { background-color: var(--color-red); color: white; }
+        .action-btn:hover { opacity: 0.9; }
 
-        .action-btn-green {
-            background-color: var(--color-green);
-            color: white;
-        }
-
-        .action-btn-red {
-            background-color: var(--color-red);
-            color: white;
-        }
-
-        .action-btn:hover {
-            opacity: 0.9;
-        }
-
-        .empty-row-msg {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 40px;
-            font-style: italic;
-        }
+        .empty-row-msg { text-align: center; color: var(--text-muted); padding: 40px; font-style: italic; }
 
         .stats-summary-cards {
             display: grid;
@@ -276,19 +218,13 @@
             padding: 20px;
             box-shadow: var(--card-shadow);
         }
-
         .summary-card h4 {
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-bottom: 8px;
             text-transform: uppercase;
         }
-
-        .summary-card p {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary-color);
-        }
+        .summary-card p { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); }
     </style>
 </head>
 <body>
@@ -303,7 +239,7 @@
             </div>
         </header>
 
-        <!-- Brief stats -->
+        <!-- Stats -->
         <div class="stats-summary-cards">
             <div class="summary-card">
                 <h4>Всего заявок</h4>
@@ -326,7 +262,10 @@
         <div class="dashboard-grid">
             <div class="card">
                 <div class="card-header">
-                    <h2>Список заявок от учеников</h2>
+                    <h2>
+                        Список заявок
+                        <span class="data-source-badge source-local" id="dataSourceBadge">💾 Локально</span>
+                    </h2>
                     <div class="filters-group">
                         <select id="filterLevel">
                             <option value="All">Все уровни</option>
@@ -340,6 +279,10 @@
                             <option value="Группа">Групповые</option>
                         </select>
                         <button class="btn btn-outline" id="refreshBtn">🔄 Обновить</button>
+                        <button class="btn btn-excel" id="exportExcelBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            Скачать CSV
+                        </button>
                         <button class="btn btn-danger" id="clearBtn">⚠️ Очистить всё</button>
                     </div>
                 </div>
@@ -353,17 +296,14 @@
                                 <th>Уровень</th>
                                 <th>Формат</th>
                                 <th>Язык</th>
-                                <th>Индивидуальный выбор Pro</th>
+                                <th>Лекции Pro</th>
                                 <th>Удобное время</th>
-                                <th>Статус обучения</th>
+                                <th>Статус</th>
                                 <th>Действия</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <!-- Populated by JavaScript -->
-                            <tr>
-                                <td colspan="9" class="empty-row-msg">Загрузка данных...</td>
-                            </tr>
+                            <tr><td colspan="9" class="empty-row-msg">Загрузка...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -372,279 +312,182 @@
     </div>
 
     <script>
-        // НАСТРОЙКА: Укажите здесь URL вашего развернутого Google Apps Script Web App (например, https://script.google.com/macros/s/.../exec)
-        // Если оставить пустую строку "", сайт будет работать с локальным сервером node server.js или python server.py
-        const API_BASE_URL = "";
+        document.addEventListener('DOMContentLoaded', function() {
+            var tableBody        = document.getElementById('tableBody');
+            var refreshBtn       = document.getElementById('refreshBtn');
+            var clearBtn         = document.getElementById('clearBtn');
+            var filterLevel      = document.getElementById('filterLevel');
+            var filterFormat     = document.getElementById('filterFormat');
+            var totalEl          = document.getElementById('totalRegistrations');
+            var boughtEl         = document.getElementById('boughtCourses');
+            var langEl           = document.getElementById('langStats');
+            var formatEl         = document.getElementById('formatStats');
+            var allRegistrations = [];
 
-        // Пароль администратора для работы с Google Sheets
-        let adminPassword = "";
-
-        function getAdminPassword() {
-            if (!API_BASE_URL) return ""; // В локальном режиме пароль не нужен
-            
-            if (!adminPassword) {
-                adminPassword = prompt("Введите пароль администратора для доступа к данным:", "");
-                if (!adminPassword) {
-                    alert("Доступ запрещен: пароль не может быть пустым.");
-                }
-            }
-            return adminPassword;
-        }
-
-        // Универсальный загрузчик API, работающий как с локальным сервером, так и с Google Sheets
-        function apiFetch(endpoint, options = {}) {
-            if (!API_BASE_URL) {
-                // Локальный режим
-                return fetch(endpoint, options);
-            }
-
-            // Проверяем пароль
-            const password = getAdminPassword();
-            if (!password) {
-                return Promise.reject("Отсутствует пароль администратора");
-            }
-
-            // Режим Google Sheets (обход CORS-запросов)
-            const url = new URL(API_BASE_URL);
-            
-            if (options.method === 'POST') {
-                let action = '';
-                if (endpoint.includes('/api/register')) action = 'register';
-                else if (endpoint.includes('/api/user-status')) action = 'update-user-status';
-                else if (endpoint.includes('/api/registrations/clear')) action = 'clear-registrations';
-                
-                let bodyData = {};
-                try {
-                    bodyData = options.body ? JSON.parse(options.body) : {};
-                } catch (e) {
-                    console.error('Ошибка парсинга тела запроса:', e);
-                }
-                bodyData.action = action;
-                bodyData.password = password; // Передаем пароль админа
-                
-                return fetch(API_BASE_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain'
-                    },
-                    body: JSON.stringify(bodyData)
-                });
-            } else {
-                // GET-запросы
-                let action = '';
-                if (endpoint.includes('/api/registrations')) {
-                    action = 'registrations';
-                    url.searchParams.set('action', action);
-                    url.searchParams.set('password', password); // Передаем пароль админа
-                } else if (endpoint.includes('/api/user-status')) {
-                    action = 'user-status';
-                    url.searchParams.set('action', action);
-                    
-                    // Извлекаем phone из query params исходного URL
-                    const queryPart = endpoint.split('?')[1];
-                    if (queryPart) {
-                        const params = new URLSearchParams(queryPart);
-                        const phone = params.get('phone');
-                        if (phone) {
-                            url.searchParams.set('phone', phone);
-                        }
-                    }
-                }
-                
-                return fetch(url.toString());
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const tableBody = document.getElementById('tableBody');
-            const refreshBtn = document.getElementById('refreshBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            
-            const filterLevel = document.getElementById('filterLevel');
-            const filterFormat = document.getElementById('filterFormat');
-
-            const totalRegistrations = document.getElementById('totalRegistrations');
-            const boughtCourses = document.getElementById('boughtCourses');
-            const langStats = document.getElementById('langStats');
-            const formatStats = document.getElementById('formatStats');
-
-            let allRegistrations = [];
-
+            // ── Загрузка из localStorage ─────────────────────────────────────
             function fetchRegistrations() {
-                apiFetch('/api/registrations')
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data && data.error) {
-                            alert("Ошибка: " + data.error);
-                            if (data.error.includes("пароль")) {
-                                adminPassword = ""; // сбрасываем неверный пароль
-                            }
-                            tableBody.innerHTML = `<tr><td colspan="9" class="empty-row-msg" style="color:var(--color-red)">${data.error}</td></tr>`;
-                            return;
-                        }
-                        allRegistrations = data || [];
-                        renderTable();
-                    })
-                    .catch(err => {
-                        console.error('Ошибка получения заявок:', err);
-                        tableBody.innerHTML = `<tr><td colspan="9" class="empty-row-msg" style="color:var(--color-red)">Не удалось загрузить данные. Пожалуйста, убедитесь, что Express-сервер запущен!</td></tr>`;
+                var regs  = JSON.parse(localStorage.getItem('registrations') || '[]');
+                var users = JSON.parse(localStorage.getItem('users') || '{}');
+
+                allRegistrations = regs.map(function(reg) {
+                    var u = users[reg.phoneNumber];
+                    return Object.assign({}, reg, {
+                        status: (u && u.status) || reg.status || 'Не куплен'
                     });
-            }
-
-            function updateSummaryCards(filteredData) {
-                totalRegistrations.textContent = filteredData.length;
-                
-                // Count bought
-                let boughtCount = 0;
-                let engCount = 0;
-                let rusCount = 0;
-                let indCount = 0;
-                let grpCount = 0;
-                
-                const promises = filteredData.map(reg => {
-                    return apiFetch(`/api/user-status?phone=${encodeURIComponent(reg.phoneNumber)}`)
-                        .then(res => res.json())
-                        .then(userData => {
-                            if (userData && userData.error) {
-                                reg.status = 'Ошибка авторизации';
-                                return;
-                            }
-                            reg.status = userData.status || 'Не куплен';
-                            if (reg.status === 'Куплен') boughtCount++;
-                            
-                            if (reg.language === 'Английский') engCount++;
-                            else if (reg.language === 'Русский') rusCount++;
-                            
-                            if (reg.format === 'Индивидуально' || reg.format === 'Индивидуальные') indCount++;
-                            else if (reg.format === 'Группа' || reg.format === 'Групповые') grpCount++;
-                        })
-                        .catch(() => {
-                            reg.status = 'Не куплен';
-                        });
                 });
 
-                Promise.all(promises).then(() => {
-                    boughtCourses.textContent = boughtCount;
-                    langStats.textContent = `${engCount} / ${rusCount}`;
-                    formatStats.textContent = `${indCount} / ${grpCount}`;
-                    
-                    // Render rows after syncing status
-                    renderRows(filteredData);
-                });
-            }
-
-            function renderTable() {
-                const level = filterLevel.value;
-                const format = filterFormat.value;
-
-                const filtered = allRegistrations.filter(reg => {
-                    const matchesLevel = (level === 'All' || reg.courseLevel === level);
-                    const matchesFormat = (format === 'All' || reg.format === format);
-                    return matchesLevel && matchesFormat;
-                });
-
-                updateSummaryCards(filtered);
-            }
-
-            function renderRows(data) {
-                tableBody.innerHTML = '';
-                
-                if (data.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="9" class="empty-row-msg">Заявки не найдены</td></tr>`;
+                if (allRegistrations.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="9" class="empty-row-msg">Заявок пока нет. Попросите кого-нибудь заполнить форму на главной странице.</td></tr>';
+                    totalEl.textContent  = 0;
+                    boughtEl.textContent = 0;
+                    langEl.textContent   = '0 / 0';
+                    formatEl.textContent = '0 / 0';
                     return;
                 }
+                renderTable();
+            }
 
-                data.forEach(reg => {
-                    const tr = document.createElement('tr');
-                    
-                    // Slots tag html
-                    const slotsHtml = (reg.slots || []).map(slot => `<span class="slot-tag">${slot}</span>`).join(' ');
-                    
-                    // Custom pro lectures
-                    let lecturesHtml = '-';
+            // ── Статистика ───────────────────────────────────────────────────
+            function updateStats(data) {
+                var b = 0, en = 0, ru = 0, ind = 0, grp = 0;
+                data.forEach(function(r) {
+                    if (r.status === 'Куплен') b++;
+                    if (r.language === 'Английский') en++;
+                    else if (r.language === 'Русский') ru++;
+                    if (r.format === 'Индивидуально' || r.format === 'Индивидуальные') ind++;
+                    else if (r.format === 'Группа' || r.format === 'Групповые') grp++;
+                });
+                totalEl.textContent  = data.length;
+                boughtEl.textContent = b;
+                langEl.textContent   = en + ' / ' + ru;
+                formatEl.textContent = ind + ' / ' + grp;
+            }
+
+            // ── Фильтрация ───────────────────────────────────────────────────
+            function renderTable() {
+                var lv = filterLevel.value;
+                var fm = filterFormat.value;
+                var filtered = allRegistrations.filter(function(r) {
+                    return (lv === 'All' || r.courseLevel === lv) &&
+                           (fm === 'All' || r.format === fm);
+                });
+                updateStats(filtered);
+                renderRows(filtered);
+            }
+
+            // ── Строки таблицы ───────────────────────────────────────────────
+            function renderRows(data) {
+                tableBody.innerHTML = '';
+                if (data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="9" class="empty-row-msg">Заявки не найдены</td></tr>';
+                    return;
+                }
+                data.forEach(function(reg) {
+                    var tr = document.createElement('tr');
+
+                    var slotsHtml = (reg.slots || []).map(function(s) {
+                        return '<span class="slot-tag">' + s + '</span>';
+                    }).join(' ');
+
+                    var lecturesHtml = '-';
                     if (reg.courseLevel === 'Pro' && reg.selectedLectures && reg.selectedLectures.length > 0) {
-                        lecturesHtml = `<ol class="lectures-list">` + 
-                            reg.selectedLectures.map(topic => `<li>${topic}</li>`).join('') + 
-                            `</ol>`;
+                        lecturesHtml = '<ol class="lectures-list">' +
+                            reg.selectedLectures.map(function(t) { return '<li>' + t + '</li>'; }).join('') +
+                            '</ol>';
                     }
 
-                    // Status Class
-                    const statusClass = reg.status === 'Куплен' ? 'status-bought' : 'status-unbought';
-                    
-                    // Build Actions
-                    const actionButton = reg.status === 'Куплен' ? 
-                        `<button class="action-btn action-btn-red" onclick="toggleStatus('${reg.phoneNumber}', 'Не куплен', '${reg.firstName}', '${reg.lastName}')">Отменить покупку</button>` :
-                        `<button class="action-btn action-btn-green" onclick="toggleStatus('${reg.phoneNumber}', 'Куплен', '${reg.firstName}', '${reg.lastName}')">Активировать курс</button>`;
+                    var isBought    = reg.status === 'Куплен';
+                    var statusClass = isBought ? 'status-bought' : 'status-unbought';
 
-                    tr.innerHTML = `
-                        <td><strong>${reg.firstName} ${reg.lastName}</strong></td>
-                        <td>${reg.phoneNumber}</td>
-                        <td><span class="slot-tag" style="background-color:var(--primary-light)">${reg.courseLevel}</span></td>
-                        <td>${reg.format}</td>
-                        <td>${reg.language}</td>
-                        <td>${lecturesHtml}</td>
-                        <td>${slotsHtml}</td>
-                        <td><span class="status-badge ${statusClass}">${reg.status}</span></td>
-                        <td class="actions-cell">${actionButton}</td>
-                    `;
+                    var ph = (reg.phoneNumber || '').replace(/'/g, '');
+                    var fn = (reg.firstName   || '').replace(/'/g, '');
+                    var ln = (reg.lastName    || '').replace(/'/g, '');
+
+                    var actionBtn = isBought
+                        ? '<button class="action-btn action-btn-red" onclick="toggleStatus(\'' + ph + '\',\'Не куплен\',\'' + fn + '\',\'' + ln + '\')">Отменить покупку</button>'
+                        : '<button class="action-btn action-btn-green" onclick="toggleStatus(\'' + ph + '\',\'Куплен\',\'' + fn + '\',\'' + ln + '\')">Активировать курс</button>';
+
+                    tr.innerHTML =
+                        '<td><strong>' + (reg.firstName||'') + ' ' + (reg.lastName||'') + '</strong></td>' +
+                        '<td>' + (reg.phoneNumber||'') + '</td>' +
+                        '<td><span class="slot-tag">' + (reg.courseLevel||'') + '</span></td>' +
+                        '<td>' + (reg.format||'') + '</td>' +
+                        '<td>' + (reg.language||'') + '</td>' +
+                        '<td>' + lecturesHtml + '</td>' +
+                        '<td>' + slotsHtml + '</td>' +
+                        '<td><span class="status-badge ' + statusClass + '">' + (reg.status||'Не куплен') + '</span></td>' +
+                        '<td class="actions-cell">' + actionBtn + '</td>';
+
                     tableBody.appendChild(tr);
                 });
             }
 
-            // Global trigger function to change user status
+            // ── Смена статуса ────────────────────────────────────────────────
             window.toggleStatus = function(phone, newStatus, firstName, lastName) {
-                apiFetch('/api/user-status', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        phoneNumber: phone,
-                        status: newStatus,
-                        firstName,
-                        lastName
-                    })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.error) {
-                        alert("Не удалось обновить статус: " + data.error);
-                        if (data.error.includes("пароль")) {
-                            adminPassword = "";
-                        }
-                        return;
-                    }
-                    fetchRegistrations(); // Reload
-                })
-                .catch(err => {
-                    console.error('Ошибка обновления статуса:', err);
-                });
+                var users = JSON.parse(localStorage.getItem('users') || '{}');
+                users[phone] = {
+                    firstName:  firstName,
+                    lastName:   lastName,
+                    status:     newStatus,
+                    updatedAt:  new Date().toISOString()
+                };
+                localStorage.setItem('users', JSON.stringify(users));
+                fetchRegistrations();
             };
 
+            // ── Экспорт CSV (без интернета, открывается в Excel) ─────────────
+            document.getElementById('exportExcelBtn').addEventListener('click', function() {
+                if (allRegistrations.length === 0) {
+                    alert('Нет данных для экспорта!');
+                    return;
+                }
+                function q(v) { return '"' + (v || '').toString().replace(/"/g, '""') + '"'; }
+
+                var headers = ['Имя','Фамилия','Телефон','Уровень','Формат','Язык','Лекции (Pro)','Удобное время','Статус','Дата заявки'];
+                var lines   = [headers.map(q).join(',')];
+
+                allRegistrations.forEach(function(r) {
+                    lines.push([
+                        r.firstName,
+                        r.lastName,
+                        r.phoneNumber,
+                        r.courseLevel,
+                        r.format,
+                        r.language,
+                        (r.selectedLectures || []).join('; '),
+                        (r.slots || []).join(' | '),
+                        r.status || 'Не куплен',
+                        r.timestamp ? new Date(r.timestamp).toLocaleString('ru-RU') : ''
+                    ].map(q).join(','));
+                });
+
+                var csv  = '\uFEFF' + lines.join('\r\n');  // BOM для кириллицы в Excel
+                var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+                var url  = URL.createObjectURL(blob);
+                var a    = document.createElement('a');
+                a.href     = url;
+                a.download = 'TheArgument_Заявки_' + new Date().toLocaleDateString('ru-RU').replace(/\./g, '-') + '.csv';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // ── Обновить ─────────────────────────────────────────────────────
             refreshBtn.addEventListener('click', fetchRegistrations);
-            
             filterLevel.addEventListener('change', renderTable);
             filterFormat.addEventListener('change', renderTable);
 
-            clearBtn.addEventListener('click', () => {
-                if (confirm('Вы уверены, что хотите удалить ВСЕ заявки с сервера? Это действие нельзя отменить.')) {
-                    apiFetch('/api/registrations/clear', { method: 'POST' })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data && data.error) {
-                                alert("Не удалось очистить заявки: " + data.error);
-                                if (data.error.includes("пароль")) {
-                                    adminPassword = "";
-                                }
-                                return;
-                            }
-                            fetchRegistrations();
-                        })
-                        .catch(err => {
-                            console.error('Ошибка очистки заявок:', err);
-                        });
+            // ── Очистить всё ─────────────────────────────────────────────────
+            clearBtn.addEventListener('click', function() {
+                if (confirm('Удалить ВСЕ заявки? Действие нельзя отменить.')) {
+                    localStorage.removeItem('registrations');
+                    localStorage.removeItem('users');
+                    fetchRegistrations();
                 }
             });
 
-            // Initial Load
+            // Загрузка при открытии
             fetchRegistrations();
         });
     </script>

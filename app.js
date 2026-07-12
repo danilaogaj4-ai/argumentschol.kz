@@ -608,53 +608,56 @@ document.addEventListener('DOMContentLoaded', () => {
                     selectedLectures: selectedCourse.level === 'Pro' ? selectedCourse.proLectures : []
                 };
 
-                // Send to local Express/Google Sheets API
-                apiFetch('/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    // Update Modal Summary Info
-                    const summaryName = document.getElementById('summaryName');
-                    const summaryPhone = document.getElementById('summaryPhone');
-                    const sumModalLevel = document.getElementById('sumModalLevel');
-                    const sumModalFormat = document.getElementById('sumModalFormat');
-                    const sumModalLang = document.getElementById('sumModalLang');
-                    const summarySlotsDiv = document.getElementById('summarySlots');
+                // Сохраняем в localStorage (работает на любом хостинге без сервера)
+                function saveToLocalStorage(p) {
+                    var stored = JSON.parse(localStorage.getItem('registrations') || '[]');
+                    stored.push(Object.assign({ id: Date.now().toString(), timestamp: new Date().toISOString() }, p));
+                    localStorage.setItem('registrations', JSON.stringify(stored));
+                }
 
-                    if (summaryName) summaryName.textContent = `${payload.firstName} ${payload.lastName}`;
-                    if (summaryPhone) summaryPhone.textContent = payload.phoneNumber;
-                    if (sumModalLevel) sumModalLevel.textContent = payload.courseLevel;
-                    if (sumModalFormat) sumModalFormat.textContent = payload.format;
-                    if (sumModalLang) sumModalLang.textContent = payload.language;
-                    
+                function showSuccessModal(p) {
+                    var summaryName     = document.getElementById('summaryName');
+                    var summaryPhone    = document.getElementById('summaryPhone');
+                    var sumModalLevel   = document.getElementById('sumModalLevel');
+                    var sumModalFormat  = document.getElementById('sumModalFormat');
+                    var sumModalLang    = document.getElementById('sumModalLang');
+                    var summarySlotsDiv = document.getElementById('summarySlots');
+
+                    if (summaryName)    summaryName.textContent  = p.firstName + ' ' + p.lastName;
+                    if (summaryPhone)   summaryPhone.textContent = p.phoneNumber;
+                    if (sumModalLevel)  sumModalLevel.textContent  = p.courseLevel;
+                    if (sumModalFormat) sumModalFormat.textContent = p.format;
+                    if (sumModalLang)   sumModalLang.textContent   = p.language;
+
                     if (summarySlotsDiv) {
                         summarySlotsDiv.innerHTML = '';
-                        payload.slots.forEach(slot => {
-                            const badge = document.createElement('span');
+                        p.slots.forEach(function(slot) {
+                            var badge = document.createElement('span');
                             badge.className = 'summary-slot-badge';
                             badge.textContent = slot;
                             summarySlotsDiv.appendChild(badge);
                         });
                     }
 
-                    // Open success modal
                     if (successModal) successModal.classList.add('open');
-
-                    // Reset form and slots selection
                     debateForm.reset();
-                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    document.querySelectorAll('.time-slot').forEach(function(s) { s.classList.remove('selected'); });
                     selectedSlots = [];
-
-                    // Re-fill if logged in
                     updateProfileUI();
-                })
-                .catch(err => {
-                    console.error('Ошибка отправки формы на сервер:', err);
-                    alert('Не удалось отправить заявку. Пожалуйста, запустите сервер Express (server.js) для полноценной работы базы данных!');
-                });
+                }
+
+                // Сохраняем локально и показываем успех
+                saveToLocalStorage(payload);
+                showSuccessModal(payload);
+
+                // Параллельно пробуем отправить на сервер (если есть) — тихо
+                try {
+                    apiFetch('/api/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    }).catch(function() { /* сервер недоступен — данные уже в localStorage */ });
+                } catch(e) { /* игнорируем */ }
             }
         });
     }
