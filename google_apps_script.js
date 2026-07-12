@@ -81,9 +81,23 @@ function makeJsonResponse(data, statusCode) {
   return output;
 }
 
+// НАСТРОЙКА: Если скрипт развернут отдельно (не привязан к таблице через Расширения -> Apps Script),
+// укажите здесь ID вашей Google Таблицы (из её URL-адреса)
+const SPREADSHEET_ID = ""; 
+
 // Проверка и создание листов, если их нет
 function getOrCreateSheet(sheetName, headers) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss;
+  if (SPREADSHEET_ID) {
+    ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  } else {
+    ss = SpreadsheetApp.getActiveSpreadsheet();
+  }
+  
+  if (!ss) {
+    throw new Error("Не удалось получить активную таблицу. Пожалуйста, укажите SPREADSHEET_ID в коде скрипта.");
+  }
+  
   var sheet = ss.getSheetByName(sheetName);
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
