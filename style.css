@@ -61,6 +61,13 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    min-width: 0;
+}
+
+/* Prevent all text from overflowing on mobile */
+h1, h2, h3, h4, h5, h6, p, span, a, li, label {
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Custom Scrollbar */
@@ -83,6 +90,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+    box-sizing: border-box;
 }
 
 /* ==========================================================================
@@ -1770,8 +1778,8 @@ h1 {
         grid-template-columns: 1fr;
         gap: 32px;
     }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
+    h1 { font-size: 1.75rem; line-height: 1.2; }
+    h2 { font-size: 1.4rem; line-height: 1.25; }
     .hero-desc { font-size: 1rem; }
     .hero-actions {
         flex-direction: column;
@@ -1786,34 +1794,81 @@ h1 {
 
     /* Promo */
     .promo-banner { padding: 24px 16px; }
-    .promo-banner h2 { font-size: 1.3rem; }
-    .promo-banner p { font-size: 0.95rem; }
+    .promo-banner h2 { font-size: 1.25rem; }
+    .promo-banner p { font-size: 0.9rem; }
 
     /* Formats */
     .formats-section { padding: 40px 0; }
     .format-card { padding: 24px 18px; }
     .format-level { font-size: 1.3rem; }
 
-    /* Registration */
+    /* Registration — critical section for overflow */
     .register-section { padding: 40px 0; }
     .register-container {
         grid-template-columns: 1fr;
         gap: 24px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
     }
-    .form-wrapper { padding: 24px 16px; }
+    .register-info {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .register-info h2 {
+        font-size: 1.3rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        white-space: normal;
+    }
+    .register-info p {
+        font-size: 0.9rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+    .form-wrapper {
+        padding: 20px 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
     .form-row {
         grid-template-columns: 1fr;
         gap: 16px;
     }
-    .btn-block { font-size: 1rem; padding: 14px; }
+    .debate-form {
+        width: 100%;
+        max-width: 100%;
+    }
+    .form-group input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .btn-block { font-size: 1rem; padding: 14px; width: 100%; box-sizing: border-box; }
 
     /* Scheduler */
+    .scheduler-container {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .scheduler-label {
+        font-size: 0.78rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
     .scheduler-grid-wrapper {
         overflow-x: auto;
         width: 100%;
         max-width: 100%;
+        -webkit-overflow-scrolling: touch;
     }
-    .scheduler-hours-grid { min-width: 500px; }
+    .scheduler-hours-grid { min-width: 480px; }
 
     /* Modals */
     .modal {
@@ -1830,8 +1885,11 @@ h1 {
     .footer-about { font-size: 0.85rem; }
 
     /* General */
-    .container { padding: 0 16px; }
+    .container { padding: 0 16px; box-sizing: border-box; }
     .section-header { margin-bottom: 28px; }
+
+    /* Prevent any element from exceeding screen */
+    * { max-width: 100%; box-sizing: border-box; }
 }
 
 /* ==========================================================================
