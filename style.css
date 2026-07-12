@@ -1793,82 +1793,90 @@ h1 {
     .stat-number { font-size: 1.5rem; }
 
     /* Promo */
-    .promo-banner { padding: 24px 16px; }
+    .promo-banner { padding: 24px 16px; grid-template-columns: 1fr; }
     .promo-banner h2 { font-size: 1.25rem; }
     .promo-banner p { font-size: 0.9rem; }
+    .promo-image-wrapper { display: none; }
 
     /* Formats */
     .formats-section { padding: 40px 0; }
+    .formats-grid { grid-template-columns: 1fr; }
     .format-card { padding: 24px 18px; }
     .format-level { font-size: 1.3rem; }
 
-    /* Registration — critical section for overflow */
-    .register-section { padding: 40px 0; }
+    /* Registration — critical mobile fix */
+    .register-section {
+        padding: 40px 0;
+        overflow: hidden;
+    }
     .register-container {
         grid-template-columns: 1fr;
         gap: 24px;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
+        min-width: 0;
     }
-    .register-info {
+    /* Prevent grid children from overflowing */
+    .register-info,
+    .form-wrapper {
+        min-width: 0;
         width: 100%;
-        max-width: 100%;
         overflow: hidden;
+        box-sizing: border-box;
     }
     .register-info h2 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
+        line-height: 1.3;
         word-break: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
-        white-space: normal;
     }
     .register-info p {
         font-size: 0.9rem;
         word-break: break-word;
         overflow-wrap: break-word;
-        white-space: normal;
     }
     .form-wrapper {
-        padding: 20px 16px;
+        padding: 20px 14px;
+    }
+    .debate-form {
         width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+        min-width: 0;
     }
     .form-row {
         grid-template-columns: 1fr;
         gap: 16px;
     }
-    .debate-form {
-        width: 100%;
-        max-width: 100%;
+    .form-group {
+        min-width: 0;
+        overflow: hidden;
     }
     .form-group input {
         width: 100%;
-        max-width: 100%;
         box-sizing: border-box;
     }
     .btn-block { font-size: 1rem; padding: 14px; width: 100%; box-sizing: border-box; }
 
-    /* Scheduler */
+    /* Scheduler — scrollable on mobile */
     .scheduler-container {
+        min-width: 0;
         width: 100%;
-        max-width: 100%;
         overflow: hidden;
     }
     .scheduler-label {
+        font-size: 0.8rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    .scheduler-sub {
         font-size: 0.78rem;
         word-break: break-word;
         overflow-wrap: break-word;
-        white-space: normal;
     }
     .scheduler-grid-wrapper {
         overflow-x: auto;
         width: 100%;
-        max-width: 100%;
         -webkit-overflow-scrolling: touch;
     }
-    .scheduler-hours-grid { min-width: 480px; }
+    /* scheduler-hours-grid keeps its min-width for scrollability */
 
     /* Modals */
     .modal {
@@ -1885,11 +1893,15 @@ h1 {
     .footer-about { font-size: 0.85rem; }
 
     /* General */
-    .container { padding: 0 16px; box-sizing: border-box; }
+    .container {
+        padding: 0 16px;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    section {
+        overflow: hidden;
+    }
     .section-header { margin-bottom: 28px; }
-
-    /* Prevent any element from exceeding screen */
-    * { max-width: 100%; box-sizing: border-box; }
 }
 
 /* ==========================================================================
