@@ -58,6 +58,30 @@ function apiFetch(endpoint, options = {}) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================================================
+    // Mobile Navigation Toggle
+    // ==========================================================================
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('.nav');
+
+    if (mobileNavToggle && navMenu) {
+        mobileNavToggle.addEventListener('click', () => {
+            mobileNavToggle.classList.toggle('open');
+            navMenu.classList.toggle('open');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking a nav link
+        navMenu.querySelectorAll('.nav-link, .nav-profile-btn').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNavToggle.classList.remove('open');
+                navMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
     // State management
     let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
     let selectedCourse = {
@@ -111,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const debateForm = document.getElementById('debateForm');
     const firstNameInput = document.getElementById('firstName');
-    const lastNameInput = document.getElementById('lastName');
+    const lastNameInput = document.getElementById('lastName'); // may be null (removed from form)
     const phoneInput = document.getElementById('phoneNumber');
     
     const schedulerGrid = document.getElementById('schedulerGrid');
@@ -169,11 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Pre-fill main registration form
             if (firstNameInput && !firstNameInput.value) {
-                const nameParts = currentUser.name.split(' ');
-                firstNameInput.value = nameParts[0] || '';
-                if (lastNameInput && nameParts.length > 1 && !lastNameInput.value) {
-                    lastNameInput.value = nameParts.slice(1).join(' ');
-                }
+                firstNameInput.value = currentUser.name.split(' ')[0] || currentUser.name;
             }
             if (phoneInput && !phoneInput.value) {
                 phoneInput.value = currentUser.phone;
@@ -272,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Clear inputs that were auto-filled
             if (firstNameInput) firstNameInput.value = '';
-            if (lastNameInput) lastNameInput.value = '';
             if (phoneInput) phoneInput.value = '';
         });
     }
@@ -305,8 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Trigger programmatic download of pdf file
         const link = document.createElement('a');
-        link.href = 'подготовка к турниру.pdf';
-        link.download = 'подготовка к турниру.pdf';
+        link.href = 'Подготовка_к_вашему_первому_турниру.pdf';
+        link.download = 'Подготовка_к_вашему_первому_турниру.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -555,33 +574,24 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Errors
             const firstNameError = document.getElementById('firstNameError');
-            const lastNameError = document.getElementById('lastNameError');
             const phoneError = document.getElementById('phoneError');
             const slotsError = document.getElementById('slotsError');
 
-            firstNameInput.classList.remove('invalid');
-            lastNameInput.classList.remove('invalid');
-            phoneInput.classList.remove('invalid');
+            if (firstNameInput) firstNameInput.classList.remove('invalid');
+            if (phoneInput) phoneInput.classList.remove('invalid');
             if (firstNameError) firstNameError.style.display = 'none';
-            if (lastNameError) lastNameError.style.display = 'none';
             if (phoneError) phoneError.style.display = 'none';
             if (slotsError) slotsError.style.display = 'none';
 
             // Validate fields
-            if (!firstNameInput.value.trim()) {
-                firstNameInput.classList.add('invalid');
+            if (!firstNameInput || !firstNameInput.value.trim()) {
+                if (firstNameInput) firstNameInput.classList.add('invalid');
                 if (firstNameError) firstNameError.style.display = 'block';
                 isValid = false;
             }
 
-            if (!lastNameInput.value.trim()) {
-                lastNameInput.classList.add('invalid');
-                if (lastNameError) lastNameError.style.display = 'block';
-                isValid = false;
-            }
-
-            if (!phoneInput.value.trim()) {
-                phoneInput.classList.add('invalid');
+            if (!phoneInput || !phoneInput.value.trim()) {
+                if (phoneInput) phoneInput.classList.add('invalid');
                 if (phoneError) phoneError.style.display = 'block';
                 isValid = false;
             }
@@ -596,9 +606,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCourseChoices();
 
                 const payload = {
-                    firstName: firstNameInput.value.trim(),
-                    lastName: lastNameInput.value.trim(),
-                    phoneNumber: phoneInput.value,
+                    firstName: firstNameInput ? firstNameInput.value.trim() : '',
+                    lastName: '',
+                    phoneNumber: phoneInput ? phoneInput.value : '',
                     slots: selectedSlots,
                     courseLevel: selectedCourse.level,
                     format: selectedCourse.format,
@@ -621,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     var sumModalLang    = document.getElementById('sumModalLang');
                     var summarySlotsDiv = document.getElementById('summarySlots');
 
-                    if (summaryName)    summaryName.textContent  = p.firstName + ' ' + p.lastName;
+                    if (summaryName)    summaryName.textContent  = p.firstName;
                     if (summaryPhone)   summaryPhone.textContent = p.phoneNumber;
                     if (sumModalLevel)  sumModalLevel.textContent  = p.courseLevel;
                     if (sumModalFormat) sumModalFormat.textContent = p.format;

@@ -52,6 +52,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -91,8 +92,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-image: 
         linear-gradient(var(--bg-grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--bg-grid-color) 1px, transparent 1px);
@@ -1807,7 +1808,12 @@ h1 {
     .btn-block { font-size: 1rem; padding: 14px; }
 
     /* Scheduler */
-    .scheduler-hours-grid { min-width: 360px; }
+    .scheduler-grid-wrapper {
+        overflow-x: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .scheduler-hours-grid { min-width: 500px; }
 
     /* Modals */
     .modal {
