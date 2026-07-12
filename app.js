@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://script.google.com/macros/s/AKfycbwzqnbERDrU-i5MpHM3y8gqnTBcmRwsS7ME43gv1VXnc5I9MymPwJM9eGVjddnbLGQ7/exec";
+const API_BASE_URL = "https://script.google.com/macros/s/AKfycbwER9NIdLHs0LKqfUSb5W9Ca1W87KdUm2JUH7rRYC8U9-H3HLQ-pO2A8W2mtxO92Vut/exec";
 
 // Универсальный загрузчик API, работающий как с локальным сервером, так и с Google Sheets
 function apiFetch(endpoint, options = {}) {
